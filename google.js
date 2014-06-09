@@ -13,18 +13,16 @@ function initialize() {
     mapOptions);
 
 
-  initWeather()
+  initWeather();
+  initDirection('Tallinn, Estonia', 'Pärnu, Estonia');
 
-
-  google.maps.event.addListener(map, 'dblclick', function(e) {
-    addMarker(e.latLng);
-    waypoints.push({
-      location: e.latLng,
-      stopover: false
-    })
-
-    initDirection();
-  });
+//  google.maps.event.addListener(map, 'dblclick', function(e) {
+//    addMarker(e.latLng);
+//    waypoints.push({
+//      location: e.latLng,
+//      stopover: false
+//    });
+//  });
 
 }
 
@@ -46,12 +44,71 @@ function addMarker(markerPos) {
   });
 }
 
-function initDirection() {
+function getElevation(start, end, steps) {
+  var path = [start, end];
+
+  // Create a PathElevationRequest object using this array.
+  // Ask for 256 samples along that path.
+  var pathRequest = {
+    'path': path,
+    'samples': steps
+  };
+
+  // Initiate the path request.
+  var elevator = new google.maps.ElevationService();
+  elevator.getElevationAlongPath(pathRequest, function(results, status) {
+    // make values for the chart
+    var values = [];
+    console.log(results);
+    for(var result in results) {
+      if(results.hasOwnProperty(result) && result && results[result].elevation) {
+        values.push({x: result, y: results[result].elevation});
+      }
+    }
+
+    console.log(values);
+    // draw
+    vg.parse.spec({
+      "width": 900,
+      "height": 200,
+      "padding": {"top": 10, "left": 20, "bottom": 20, "right": 10},
+      "data": [
+        {
+          "name": "table",
+          "values": values
+        }
+      ],
+      "scales": [
+        {"name":"x", "type":"ordinal", "range":"width", "domain":{"data":"table", "field":"data.x"}},
+        {"name":"y", "range":"height", "nice":true, "domain":{"data":"table", "field":"data.y"}}
+      ],
+      "axes": [
+        {"type":"x", "scale":"x", "title": "Elevation", "values": []},
+        {"type":"y", "scale":"y"}
+      ],
+      "marks": [
+        {
+          "type": "area",
+          "from": {"data":"table"},
+          "properties": {
+            "enter": {
+              "x": {"scale":"x", "field":"data.x"},
+              "width": {"scale":"x", "band":true, "offset":-1},
+              "y": {"scale":"y", "field":"data.y"},
+              "y2": {"scale":"y", "value":0}
+            },
+            "update": { "fill": {"value":"seagreen"} },
+            "hover": { "fill": {"value":"darkseagreen "} }
+          }
+        }
+      ]
+    }, function(chart) { chart({el:"#elevation-chart"}).update().on("mouseover", function(event, item) { console.log(item); }); });
+  });
+}
+
+function initDirection(start, end) {
 
   directionsDisplay.setMap(map);
-
-  var start = 'Tallinn, Estonia';
-  var end = 'Pärnu, Estonia';
 
   var request = {
     origin:start,
@@ -64,6 +121,9 @@ function initDirection() {
     console.log(response);
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
+      // calculate how many steps we'll do (1, 512)
+      var steps = Math.floor((response.routes[0].legs[0].distance.value / 1000));
+      getElevation(response.routes[0].legs[0].start_location, response.routes[0].legs[0].end_location, (steps < 512 && steps > 1 ? steps : '256'));
     }
   });
 }

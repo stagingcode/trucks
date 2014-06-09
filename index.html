@@ -7,15 +7,8 @@
   <link rel="stylesheet" href="vendor/metro-bootstrap-responsive.min.css">
   <link href="vendor/fonts/iconFont.min.css" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
-  <script src="vendor/jquery-2.1.1.min.js"></script>
-  <script src="vendor/jquery-ui-1.10.4.custom.min.js"></script>
 
-  <script src="vendor/metro.min.js"></script>
-  <script type="text/javascript"
-          src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDnxOE2ijFr6xnj6yfD8YdtG7fuGh66Oi4&sensor=false&libraries=weather">
-  </script>
-  <script type="text/javascript" src="google.js">
-  </script>
+
 </head>
 <body>
 <div class="metro">
@@ -29,29 +22,134 @@
   </header>
   <!-- header end -->
 
-  <div class="container">
-      <div class="map">
-        <div id="map-canvas"></div>
-      </div>
-        <h2>Time: <b>1h:25m</b></h2>
-        <span class="square10 inline-block bg-emerald on-left"></span><span class="fg-emerald">-5% from -400 elevation</span><br />
-        <span class="square10 inline-block bg-red on-left"></span><span class="fg-red">+8% from bad weather</span><br />
+    <div class="container">
+        <h2>Jobs</h2>
+        <div class="tile triple job-tile">
+            <div class="tile-content icon">
+                <div class="text-left padding5">
+                    <button class="success" onclick="initDirection('Tallinn, Estonia', 'Pärnu, Estonia')">Show info</button>
+                    <br>From: <b>Tallinn</b>
+                    <br>To: <b>Pärnu</b>
+                </div>
+                <i class="icon-clipboard-2"></i>
+            </div>
+            <div class="brand bg-gray">
+                <span class="label bg-gray">Food</span>
+                <div class="badge bg-grayLight"><i class="icon-clipboard-2"></i></div>
+            </div>
+        </div>
+        <div class="tile triple job-tile">
+            <div class="tile-content icon">
+                <div class="text-left padding5">
+                    <button class="success" onclick="initDirection('Pärnu, Estonia', 'Narva, Estonia')">Show info</button>
+                    <br>From: <b>Pärnu</b>
+                    <br>To: <b>Narva</b>
+                </div>
+                <i class="icon-clipboard-2"></i>
+            </div>
+            <div class="brand bg-gray">
+                <span class="label bg-gray">Food</span>
+                <div class="badge bg-grayLight"><i class="icon-clipboard-2"></i></div>
+            </div>
+        </div>
+        <div class="tile triple job-tile">
+            <div class="tile-content icon">
+                <div class="text-left padding5">
+                    <button class="success" onclick="initDirection('Pärnu, Estonia', 'Tartu, Estonia')">Show info</button>
+                    <br>From: <b>Pärnu</b>
+                    <br>To: <b>Tartu</b>
+                </div>
+                <i class="icon-clipboard-2"></i>
+            </div>
+            <div class="brand bg-gray">
+                <span class="label bg-gray">Food</span>
+                <div class="badge bg-grayLight"><i class="icon-clipboard-2"></i></div>
+            </div>
+        </div>
+        <div class="tile triple job-tile">
+            <div class="tile-content icon">
+                <div class="text-left padding5">
+                    <button class="success" onclick="initDirection('Tartu, Estonia', 'Narva, Estonia')">Show info</button>
+                    <br>From: <b>Tartu</b>
+                    <br>To: <b>Narva</b>
+                </div>
+                <i class="icon-clipboard-2"></i>
+            </div>
+            <div class="brand bg-gray">
+                <span class="label bg-gray">Food</span>
+                <div class="badge bg-grayLight"><i class="icon-clipboard-2"></i></div>
+            </div>
+        </div>
+        <div class="tile triple job-tile">
+            <div class="tile-content icon">
+                <div class="text-left padding5">
+                    <button class="success" onclick="initDirection('Tartu, Estonia', 'Kuressaare, Estonia')">Show info</button>
+                    <br>From: <b>Tartu</b>
+                    <br>To: <b>Kuressaare</b>
+                </div>
+                <i class="icon-clipboard-2"></i>
+            </div>
+            <div class="brand bg-gray">
+                <span class="label bg-gray">Food</span>
+                <div class="badge bg-grayLight"><i class="icon-clipboard-2"></i></div>
+            </div>
+        </div>
+        <div class="tile triple job-tile">
+            <div class="tile-content icon">
+                <div class="text-left padding5">
+                    <button class="success" onclick="initDirection('Tallinn, Estonia', 'Tartu, Estonia')">Show info</button>
+                    <br>From: <b>Tallinn</b>
+                    <br>To: <b>Tartu</b>
+                </div>
+                <i class="icon-clipboard-2"></i>
+            </div>
+            <div class="brand bg-gray">
+                <span class="label bg-gray">Food</span>
+                <div class="badge bg-grayLight"><i class="icon-clipboard-2"></i></div>
+            </div>
+        </div>
+
+        <div class="map">
+            <div id="map-canvas"></div>
+        </div>
+
+        <div class="graph">
+            <h2>Elevation</h2>
+            <div id="elevation-chart"></div>
+        </div>
+
+        <div class="stats">
+            <h2>Time: <b>1h:25m</b></h2>
+            <span class="square10 inline-block bg-emerald on-left"></span><span class="fg-emerald">-5% from -400 elevation</span><br />
+            <span class="square10 inline-block bg-red on-left"></span><span class="fg-red">+8% from bad weather</span><br />
 
 
-        <h2>Fuel consumption: <b>130L</b></h2>
-        <span class="square10 inline-block bg-red on-left"></span><span class="fg-red">+15% due to heavy load</span><br />
-        <span class="square10 inline-block bg-red on-left"></span><span class="fg-red">+10% due to bad weather</span><br />
-        <span class="square10 inline-block bg-red on-left"></span><span class="fg-red">+10% due to over service time</span><br />
-        <span class="square10 inline-block bg-red on-left"></span><span class="fg-red">+18% due to high winds</span><br />
 
-        <h2>Payout: <b>500€</b></h2>
-        <span class="square10 inline-block bg-emerald on-left"></span><span class="fg-emerald">+650€ from job pay</span><br />
-        <span class="square10 inline-block bg-red on-left"></span><span class="fg-red">-150€ fuel</span><br />
+            <h2>Fuel consumption: <b>130L</b></h2>
+            <span class="square10 inline-block bg-red on-left"></span><span class="fg-red">+15% due to heavy load</span><br />
+            <span class="square10 inline-block bg-red on-left"></span><span class="fg-red">+10% due to bad weather</span><br />
+            <span class="square10 inline-block bg-red on-left"></span><span class="fg-red">+10% due to over service time</span><br />
+            <span class="square10 inline-block bg-red on-left"></span><span class="fg-red">+18% due to high winds</span><br />
+
+            <h2>Payout: <b>500€</b></h2>
+            <span class="square10 inline-block bg-emerald on-left"></span><span class="fg-emerald">+650€ from job pay</span><br />
+            <span class="square10 inline-block bg-red on-left"></span><span class="fg-red">-150€ fuel</span><br />
+        </div>
     </div>
-  </div>
 </div>
 
 
+<script src="http://trifacta.github.io/vega/lib/d3.v3.min.js"></script>
+<script src="http://trifacta.github.io/vega/lib/d3.geo.projection.min.js"></script>
+<script src="http://trifacta.github.io/vega/lib/topojson.js"></script>
+<script src="http://trifacta.github.io/vega/vega.js"></script>
+<script src="vendor/jquery-2.1.1.min.js"></script>
+<script src="vendor/jquery-ui-1.10.4.custom.min.js"></script>
 
+<script src="vendor/metro.min.js"></script>
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDnxOE2ijFr6xnj6yfD8YdtG7fuGh66Oi4&sensor=false&libraries=weather">
+</script>
+<script type="text/javascript" src="google.js"></script>
 </body>
 </html>
