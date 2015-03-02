@@ -47,6 +47,12 @@ module.exports = function () {
                         return;
                     }
                     req.session.userId = user.email;
+
+                    // put masked user obj to session
+                    req.session.user = {
+                        name: user.email,
+                        id: user.id
+                    }
                     res.send(200);
                 });
             });

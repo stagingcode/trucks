@@ -1,9 +1,9 @@
 {
-  "name": "app-skeleton",
-  "version": "1.0.0",
+  "name": "trucks",
+  "version": "0.0.5",
   "repository": {
     "type": "git",
-    "url": "git@github.com:nodeswat/app-skeleton.git"
+    "url": "git@github.com:stagingcode/trucks"
   },
   "main": "index.js",
   "dependencies": {

@@ -1,12 +1,12 @@
 {
-  "name": "app-skeleton",
+  "name": "trucks",
   "main": "index.js",
-  "version": "0.1.0",
-  "homepage": "https://github.com/nodeswat/app-skeleton",
+  "version": "0.0.5",
+  "homepage": "https://github.com/stagingcode/trucks",
   "authors": [
-    "Harri Siirak <harri.siirak@gmail.com>"
+    "Henrik Peinar <henrikpeinar@gmail.com>"
   ],
-  "description": "nodeSWAT.com application skeleton",
+  "description": "Trucks webgame",
   "license": "MIT",
   "private": true,
   "ignore": [
@@ -21,7 +21,7 @@
     "angular": "~1.3.13",
     "angular-ui-router": "~0.2.13",
     "jquery": "~2.1.3",
-    "bootstrap": "~3.3.2",
-    "angular-ui": "~0.4.0"
+    "angular-ui": "~0.4.0",
+    "metro-ui-css": "~2.0.23"
   }
 }

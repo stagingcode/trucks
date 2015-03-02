@@ -24,8 +24,35 @@
 
     <div class="mainLoader" data-ng-hide="true"></div>
 
-    {{{_body}}}
-    <div data-ui-view></div>
+    <div class="metro">
+        <!-- header start -->
+        <header class="bg-dark">
+            <div class="navigation-bar dark">
+                <div class="navigation-bar-content container">
+                    <a href="/" class="element"><i class="icon-bus"></i> Logistics game <sup>0.0.1</sup></a>
+                    <span class="element-divider"></span>
+                    {{#if _isLoggedIn}}
+                        <a href="/" class="element"><b>{{ user.name }}</b></a>
+                        <!-- left side menu -->
+                        <item class="element"><a href="/trucks/dashboard">Trucks</a></item>
+                        <item class="element"><a href="/trucks/dashboard">Jobs</a></item>
+                        <item class="element"><a href="/trucks/dashboard">Market</a></item>
+
+                        <!-- right side menu -->
+                        <item class="element place-right"><a href="/api/auth/logout" target="_self">Logout</a></item>
+                    {{else}}
+                        <item class="element place-right {{equals page 'register' 'active'}}"><a href="/register">Register</a></item>
+                        <item class="element place-right {{equals page 'login' 'active'}}"><a href="/login">Login</a></item>
+                    {{/if}}
+                </div>
+            </div>
+        </header>
+        <!-- header end -->
+
+        <div class="container">
+            <div data-ui-view></div>
+        </div>
+    </div>
 
     <script type="text/javascript" src="/public/assets/js/vendor.min.js?v={{version}}"></script>
 

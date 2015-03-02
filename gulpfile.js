@@ -48,7 +48,7 @@ gulp.task('styles-less', function () {
         .pipe(concat('styles-less.css'))
         .pipe(less({
             paths: [
-                path.join(__dirname, 'vendor/bootstrap/less'), // Bootstrap can be included in app less files
+                path.join(__dirname, 'vendor/metro-ui-css/less'), // MetroUI can be included in app less files
                 path.join(__dirname, 'src/styles/less')
             ]
         }))
@@ -64,16 +64,16 @@ gulp.task('styles-css', function () {
 });
 
 gulp.task('styles-vendor', function () {
-    // Load all vendor stylesheets expect bootstrap ones which should be loaded manually
+    // Load all vendor stylesheets expect MetroUI ones which should be loaded manually
     // Sww src/styles/less/main.less
-    return gulp.src([ '!vendor/bootstrap/**', 'vendor/**/*.min.css' ])
+    return gulp.src([ '!vendor/metro-ui-css/**', 'vendor/**/*.min.css' ])
         .pipe(concat('vendor.min.css'))
         .pipe(gulp.dest('public/assets/css'))
         .pipe(notify({ message: '"styles-css" sub-task complete' }));
 });
 
 gulp.task('styles-fonts', function () {
-    return gulp.src('src/styles/fonts/**/')
+    return gulp.src(['src/styles/fonts/**/', 'vendor/metro-ui-css/fonts/*'])
         .pipe(gulp.dest('public/assets/fonts'))
         .pipe(notify({ message: '"styles-fonts" sub-task complete' }));
 });

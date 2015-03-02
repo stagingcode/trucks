@@ -1,0 +1,16 @@
+<!-- header start -->
+<header class="bg-dark" data-load="header.html">
+    <div class="navigation-bar dark">
+        <div class="navigation-bar-content container">
+            <a href="/" class="element"><i class="icon-bus"></i> Logistics game <sup>0.0.1</sup></a>
+            <span class="element-divider"></span>
+            {{#if _isLoggedIn}}
+                <item class="element place-right"><a href="/p/dashboard">Dashboard</a></item>
+            {{else}}
+                <item class="element place-right {{equals page 'register' 'active'}}"><a href="/register">Register</a></item>
+                <item class="element place-right {{equals page 'login' 'active'}}"><a href="/login">Login</a></item>
+            {{/if}}
+        </div>
+    </div>
+</header>
+<!-- header end -->

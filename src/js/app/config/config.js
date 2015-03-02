@@ -7,7 +7,7 @@ window.app.main.config([
         $locationProvider.html5Mode(true);
         //
         // For any unmatched url, redirect to /
-        $urlRouterProvider.otherwise('/app/dashboard');
+        $urlRouterProvider.otherwise('/trucks/dashboard');
         //
         // Now set up the states
         $stateProvider
@@ -17,7 +17,7 @@ window.app.main.config([
                 controller: 'ErrorController'
             })
             .state('dashboard', {
-                url: '/app',
+                url: '/trucks',
                 abstract: true,
                 templateUrl: 'dashboard.html',
                 controller: 'DashboardController'

@@ -21,26 +21,27 @@
 
     <body ng-app="App">
 
-    <div class="container">
-        <div class="header">
-            <ul class="nav nav-pills pull-right">
-                <li class="{{equals page 'about' 'active'}}"><a href="/about">About</a></li>
-                {{#if _isLoggedIn}}
-                    <li><a href="/p/dashboard">Dashboard</a></li>
-                {{else}}
-                    <li class="{{equals page 'register' 'active'}}"><a href="/register">Register</a></li>
-                    <li class="{{equals page 'login' 'active'}}"><a href="/login">Login</a></li>
-                {{/if}}
-            </ul>
-            <h3 class="text-muted">Home</h3>
+    <div class="metro">
+        <!-- header start -->
+        <header class="bg-dark">
+            <div class="navigation-bar dark">
+                <div class="navigation-bar-content container">
+                    <a href="/" class="element"><i class="icon-bus"></i> Logistics game <sup>0.0.1</sup></a>
+                    <span class="element-divider"></span>
+                    {{#if _isLoggedIn}}
+                        <item class="element place-right"><a href="/p/dashboard">Dashboard</a></item>
+                    {{else}}
+                        <item class="element place-right {{equals page 'register' 'active'}}"><a href="/register">Register</a></item>
+                        <item class="element place-right {{equals page 'login' 'active'}}"><a href="/login">Login</a></item>
+                    {{/if}}
+                </div>
+            </div>
+        </header>
+        <!-- header end -->
+
+        <div class="container">
+            {{{_body}}}
         </div>
-
-        {{{_body}}}
-
-        <div class="footer">
-            <p>&copy; Company 2015</p>
-        </div>
-
     </div>
 
     <script type="text/javascript" src="/public/assets/js/vendor.min.js?v={{version}}"></script>

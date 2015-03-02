@@ -146,10 +146,15 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.get('/app/?*', function (req, res, next) {
+app.get('/trucks/?*', function (req, res, next) {
+
+    res.locals._isLoggedIn = req.session.isLoggedIn();
+
     if (!req.session.isLoggedIn()) {
         res.redirect('/login?return=' + encodeURIComponent(req.originalUrl));
         return;
+    } else {
+        res.locals.user = req.session.user;
     }
 
     res.locals.partials = partials;
