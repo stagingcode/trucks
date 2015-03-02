@@ -1,7 +1,8 @@
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
-var map;
+var map, directionStart, directionEnd;
 var waypoints = [];
+var waypointsLatLng = [];
 
 function initialize() {
   directionsDisplay = new google.maps.DirectionsRenderer();
@@ -15,14 +16,20 @@ function initialize() {
 
   initWeather();
   initDirection('Tallinn, Estonia', 'Pärnu, Estonia');
+  setTimeout(function() {
+    map.reload(true);
+    google.maps.event.trigger(map, 'resize');
+  }, 1000);
 
-//  google.maps.event.addListener(map, 'dblclick', function(e) {
-//    addMarker(e.latLng);
-//    waypoints.push({
-//      location: e.latLng,
-//      stopover: false
-//    });
-//  });
+  google.maps.event.addListener(map, 'dblclick', function(e) {
+    addMarker(e.latLng);
+    waypoints.push({
+      location: e.latLng,
+      stopover: false
+    });
+    waypointsLatLng.push(e.latLng);
+    initDirection(directionStart, directionEnd);
+  });
 
 }
 
@@ -45,7 +52,9 @@ function addMarker(markerPos) {
 }
 
 function getElevation(start, end, steps) {
-  var path = [start, end];
+  var path = waypointsLatLng;
+  path.push(end);
+  path.unshift(start);
 
   // Create a PathElevationRequest object using this array.
   // Ask for 256 samples along that path.
@@ -59,7 +68,6 @@ function getElevation(start, end, steps) {
   elevator.getElevationAlongPath(pathRequest, function(results, status) {
     // make values for the chart
     var values = [];
-    console.log(results);
     for(var result in results) {
       if(results.hasOwnProperty(result) && result && results[result].elevation) {
         values.push({x: result, y: results[result].elevation});
@@ -107,6 +115,8 @@ function getElevation(start, end, steps) {
 }
 
 function initDirection(start, end) {
+  directionStart = start;
+  directionEnd = end;
 
   directionsDisplay.setMap(map);
 

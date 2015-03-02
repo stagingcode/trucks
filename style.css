@@ -8,6 +8,8 @@
     float:left;
 }
 
+.map img{max-width: inherit;}
+
 .graph {
   float: left;
 }
