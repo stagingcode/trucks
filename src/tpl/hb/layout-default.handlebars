@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <base href="/" />
+        <title>Example</title>
+
+        <link href="/public/assets/css/vendor.min.css?v={{version}}" rel="stylesheet" />
+
+        {{#if isDevelopment}}
+            <link href="/public/assets/css/app.css?v={{seed}}" rel="stylesheet" />
+        {{else}}
+            <link href="/public/assets/css/app.min.css?v={{version}}" rel="stylesheet" />
+        {{/if}}
+    </head>
+
+    <body ng-app="App">
+
+    <div class="container">
+        <div class="header">
+            <ul class="nav nav-pills pull-right">
+                <li class="{{equals page 'about' 'active'}}"><a href="/about">About</a></li>
+                {{#if _isLoggedIn}}
+                    <li><a href="/p/dashboard">Dashboard</a></li>
+                {{else}}
+                    <li class="{{equals page 'register' 'active'}}"><a href="/register">Register</a></li>
+                    <li class="{{equals page 'login' 'active'}}"><a href="/login">Login</a></li>
+                {{/if}}
+            </ul>
+            <h3 class="text-muted">Home</h3>
+        </div>
+
+        {{{_body}}}
+
+        <div class="footer">
+            <p>&copy; Company 2015</p>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="/public/assets/js/vendor.min.js?v={{version}}"></script>
+
+    {{#if isDevelopment}}
+        <script type="text/javascript" src="/public/assets/js/app.js?v={{seed}}"></script>
+    {{else}}
+        <script type="text/javascript" src="/public/assets/js/app.min.js?v={{version}}"></script>
+    {{/if}}
+
+    </body>
+</html>

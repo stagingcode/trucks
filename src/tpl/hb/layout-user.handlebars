@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <base href="/app" />
+
+    <title>Example</title>
+
+    <link href="/public/assets/css/vendor.min.css?v={{version}}" rel="stylesheet" />
+
+    {{#if isDevelopment}}
+        <link href="/public/assets/css/app.css?v={{seed}}" rel="stylesheet" />
+    {{else}}
+        <link href="/public/assets/css/app.min.css?v={{version}}" rel="stylesheet" />
+    {{/if}}
+</head>
+
+<body ng-app="App" data-ng-controller="MainController">
+
+    <div class="mainLoader" data-ng-hide="true"></div>
+
+    {{{_body}}}
+    <div data-ui-view></div>
+
+    <script type="text/javascript" src="/public/assets/js/vendor.min.js?v={{version}}"></script>
+
+    {{#if isDevelopment}}
+        <script type="text/javascript" src="/public/assets/js/app.js?v={{seed}}"></script>
+    {{else}}
+        <script type="text/javascript" src="/public/assets/js/app.min.js?v={{version}}"></script>
+    {{/if}}
+
+    {{#each partials}}
+        <script type="text/ng-template" id="{{name}}">
+                {{{contents}}}
+	    </script>
+    {{/each}}
+    <script type="text/ng-template" id="error.html">
+        <div id="error">
+            <h1 class="text-center">You broke our page :O</h1>
+        </div>
+    </script>
+</body>
+</html>

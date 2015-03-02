@@ -1,0 +1,42 @@
+{
+    "name": "App",
+    "port": 3300,
+    "secret": "YOLO",
+    "log": {
+        "name": "App - log",
+        "level": "debug"
+    },
+
+    "redis": {
+        "host": "localhost",
+        "port": 6379,
+        "db": 2,
+        "pass": ""
+    },
+
+    "mysql": {
+        "db": "",
+        "host": "localhost",
+        "port": "3306",
+        "user": "root",
+        "password": ""
+    },
+
+    "email": {
+        "transport": {
+            "service": "Gmail",
+            "auth": {
+                "user": "gmail.user@gmail.com",
+                "pass": "userpass"
+            }
+        },
+        "options" : {
+            "from": "support@example.com"
+        }
+    },
+
+    "csrf": {
+        "token": false,
+        "origin": false
+    }
+}

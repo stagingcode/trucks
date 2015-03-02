@@ -1,0 +1,39 @@
+<div class="row" style="margin-bottom: 50px;">
+    <div class="col-xs-12">
+        <fieldset>
+            <legend>{{user.email}} - settings</legend>
+            <div class="row">
+                <div class="col-xs-12" data-ng-show="error">
+                    <div class="alert alert-danger">
+                        Updated failed
+                    </div>
+                </div>
+                <div class="col-xs-12" data-ng-show="success">
+                    <div class="alert alert-success">
+                        Updated successfully
+                    </div>
+                </div>
+                <div class="col-xs-10 col-sm-6">
+                    <div class="form" data-ng-form="passwordForm">
+                        <h2 class="form-signin-heading">Set new password</h2>
+                        <div class="alert alert-danger" data-ng-show="error">{{errorMessage}}</div>
+                        <div class="form-group" data-ng-class="{'has-error': invalid.oldpassword}">
+                            <input data-ng-model="oldpassword" type="password" class="form-control" placeholder="Old password" required="" autofocus="">
+                        </div>
+                        <div class="form-group" data-ng-class="{'has-error': invalid.password || missing.password}">
+                            <input data-ng-model="password" type="password" class="form-control" placeholder="Password" required="" autofocus="">
+                        </div>
+                        <div class="form-group" data-ng-class="{'has-error': invalid.password2 || missing.password2}">
+                            <input data-ng-model="password2" type="password" class="form-control" placeholder="Password repeat" required="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2 col-xs-offset-10">
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" data-ng-click="update()" data-ng-disabled="inProgress">Save</button>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

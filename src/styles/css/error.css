@@ -1,0 +1,10 @@
+#error {
+    height: 440px;
+    width: 600px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -300px;
+    margin-top: -220px;
+    background: url('http://cdn.css-tricks.com/images/404.jpg') no-repeat bottom center;
+}

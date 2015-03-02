@@ -1,0 +1,9 @@
+{
+    "name": "App Skeleton Dev Git Webhook",
+    "port": 3001,
+    "secret": "Supersecret",
+    "log": {
+        "name": "App Skeleton Git - log",
+        "level": "debug"
+    }
+}

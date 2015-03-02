@@ -1,0 +1,4 @@
+.mainLoader {
+    height: 500px;
+    background: url('../img/ajax-loader.gif') no-repeat center;
+}
