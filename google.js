@@ -3,6 +3,7 @@ var directionsService = new google.maps.DirectionsService();
 var map, directionStart, directionEnd;
 var waypoints = [];
 var waypointsLatLng = [];
+var currentRoute = null;
 
 function initialize() {
   directionsDisplay = new google.maps.DirectionsRenderer();
@@ -114,6 +115,17 @@ function getElevation(start, end, steps) {
   });
 }
 
+function markerOnRoute(percent) {
+  if (!currentRoute) {
+    return;
+  }
+
+  var routeLength = currentRoute.overview_path.length;
+  var routePointForMarker = currentRoute.overview_path[Math.floor(routeLength * (percent / 100))];
+
+  addMarker(routePointForMarker);
+}
+
 function initDirection(start, end) {
   directionStart = start;
   directionEnd = end;
@@ -132,6 +144,7 @@ function initDirection(start, end) {
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
       // calculate how many steps we'll do (1, 512)
+      currentRoute = response.routes[0];
       var steps = Math.floor((response.routes[0].legs[0].distance.value / 1000));
       getElevation(response.routes[0].legs[0].start_location, response.routes[0].legs[0].end_location, (steps < 512 && steps > 1 ? steps : '256'));
     }
